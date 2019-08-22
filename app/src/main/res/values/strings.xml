@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Club</string>
+
+    <string name="hello1">This is the main fragment</string>
+
+    <array name="menuOptions">
+        <item>Home</item>
+        <item>Option 2</item>
+        <item>Option 3</item>
+        <item>Settings</item>
+        <item>About</item>
+    </array>
+
 </resources>
