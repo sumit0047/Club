@@ -3,12 +3,21 @@
 
     <string name="hello1">This is the main fragment</string>
 
+    <string name="about">This is about</string>
+
+    <string name="events">This is events</string>
+
+    <string name="club">This is clubs</string>
+
     <array name="menuOptions">
         <item>Home</item>
-        <item>Option 2</item>
-        <item>Option 3</item>
+        <item>Events</item>
+        <item>Clubs</item>
         <item>Settings</item>
         <item>About</item>
     </array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements DuoMenuView.OnMen
             transaction.addToBackStack(null);
         }
 
-        transaction.add(R.id.container, fragment).commit();
+        transaction.replace(R.id.container, fragment).commit();
     }
 
     @Override
@@ -100,7 +100,14 @@ public class MainActivity extends AppCompatActivity implements DuoMenuView.OnMen
 
         // Navigate to the right fragment
         switch (position) {
-            default:
+
+            case 1 : goToFragment(new Events(),false);
+                    break;
+            case 2 : goToFragment(new Clubs(),false);
+                    break;
+            case 4 : goToFragment(new About(),false);
+                    break;
+                    default:
                 goToFragment(new MainFragment(), false);
                 break;
         }
