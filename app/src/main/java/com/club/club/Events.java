@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -27,6 +28,18 @@ public class Events extends Fragment{
         View view = inflater.inflate(R.layout.fragment_events, container, false);
 
         recyclerView = view.findViewById(R.id.rv);
+
+        recyclerView.addOnItemTouchListener(new RvItemClickListener(getContext(), recyclerView, new RvItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Toast.makeText(getContext(), "Clicked " +position, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onLongItemClick(View view, int position) {
+                Toast.makeText(getContext(), "long Clicked", Toast.LENGTH_SHORT).show();
+            }
+        }));
 
         meventlist = new ArrayList<>();
 
