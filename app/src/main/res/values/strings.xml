@@ -9,6 +9,8 @@
 
     <string name="club">This is clubs</string>
 
+    <string name="info_text">jhjhjhjh</string>
+
     <array name="menuOptions">
         <item>Home</item>
         <item>Events</item>
