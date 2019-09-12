@@ -1,6 +1,7 @@
 package com.club.club;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -33,6 +34,10 @@ public class Events extends Fragment{
             @Override
             public void onItemClick(View view, int position) {
                 Toast.makeText(getContext(), "Clicked " +position, Toast.LENGTH_SHORT).show();
+                if(position==2) {
+                    Intent intent = new Intent(getContext(), Event_Details.class);
+                    startActivity(intent);
+                }
             }
 
             @Override
