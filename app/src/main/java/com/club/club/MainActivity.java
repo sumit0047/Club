@@ -105,6 +105,8 @@ public class MainActivity extends AppCompatActivity implements DuoMenuView.OnMen
                     break;
             case 2 : goToFragment(new Clubs(),false);
                     break;
+            case 3 : goToFragment(new About(),false);
+                break;
             case 4 : goToFragment(new About(),false);
                     break;
                     default:
