@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".Event_Details"></activity>
+        <activity android:name=".Club_Details"></activity>
+        <activity android:name=".Event_Details" />
         <activity
             android:name=".SplashScreen"
             android:theme="@style/Splash">
