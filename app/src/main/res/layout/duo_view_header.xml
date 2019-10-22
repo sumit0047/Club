@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="32dp"
-        android:text="John Doe"
+        android:text="Profile name"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@android:color/white"
         android:textSize="24sp"
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/duo_view_header_text_title"
         android:layout_marginLeft="32dp"
-        android:text="Manager"
+        android:text="USN no."
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@android:color/white"
         android:textStyle="italic"/>
