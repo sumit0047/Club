@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -81,10 +82,14 @@ public class Events extends Fragment{
             @Override
             public void onItemClick(View view, int position) {
                 Toast.makeText(getContext(), "Clicked " +position, Toast.LENGTH_SHORT).show();
-                if(position==2) {
+                    View view2 = recyclerView.getLayoutManager().findViewByPosition(position);
+                    TextView tv = (TextView)view2.findViewById(R.id.titleTextView);
+
+                   // Toast.makeText(getContext(),tv.getText().toString(),Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getContext(), Event_Details.class);
+                    intent.putExtra("name",tv.getText().toString());
                     startActivity(intent);
-                }
+
             }
 
             @Override
@@ -104,9 +109,6 @@ public class Events extends Fragment{
 
         recyclerView.setAdapter(adapter);
 
-
-
-       // recyclerView.setAdapter(eadapter);
 
         return view;
 
