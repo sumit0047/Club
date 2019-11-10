@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,13 +16,21 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import java.util.ArrayList;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 
 public class Events extends Fragment{
 
     RecyclerView recyclerView;
-    ArrayList<ModelEvent> meventlist;
+
+    DatabaseReference mRef;
+    FirebaseRecyclerOptions<ModelEvent> options;
+    FirebaseRecyclerAdapter<ModelEvent,EventViewHolder> adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,6 +39,43 @@ public class Events extends Fragment{
         View view = inflater.inflate(R.layout.fragment_events, container, false);
 
         recyclerView = view.findViewById(R.id.rv);
+
+        mRef = FirebaseDatabase.getInstance().getReference().child("events");
+
+        options = new FirebaseRecyclerOptions.Builder<ModelEvent>()
+                .setQuery(mRef,ModelEvent.class).build();
+
+        adapter = new FirebaseRecyclerAdapter<ModelEvent, EventViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull EventViewHolder holder, int position, @NonNull ModelEvent model) {
+
+                Picasso.get().load(model.getImage()).into(holder.i1, new Callback() {
+                    @Override
+                    public void onSuccess() {
+
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+                holder.t1.setText(model.getTitle());
+
+            }
+
+            @NonNull
+            @Override
+            public EventViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_events,parent,false);
+                return new EventViewHolder(view);
+            }
+        };
+
+
 
         recyclerView.addOnItemTouchListener(new RvItemClickListener(getContext(), recyclerView, new RvItemClickListener.OnItemClickListener() {
             @Override
@@ -46,25 +93,44 @@ public class Events extends Fragment{
             }
         }));
 
-        meventlist = new ArrayList<>();
 
-        meventlist.add(new ModelEvent(R.drawable.horiz,"Code it Out"));
-        meventlist.add(new ModelEvent(R.drawable.bp,"TEDxSIT"));
-        meventlist.add(new ModelEvent(R.drawable.qq,"Quriosity"));
-        meventlist.add(new ModelEvent(R.drawable.qq2,"The Entertainment Quiz"));
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         RecyclerView.LayoutManager rvlayoutmanager = layoutManager;
 
         recyclerView.setLayoutManager(rvlayoutmanager);
 
-        Events_Adapter eadapter = new Events_Adapter(getContext(),meventlist);
+        adapter.startListening();
 
-        recyclerView.setAdapter(eadapter);
+        recyclerView.setAdapter(adapter);
+
+
+
+       // recyclerView.setAdapter(eadapter);
 
         return view;
 
 
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        if(adapter!=null)
+            adapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if(adapter!=null)
+            adapter.stopListening();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(adapter!=null)
+            adapter.startListening();
+    }
 }

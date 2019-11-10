@@ -2,19 +2,22 @@ package com.club.club;
 
 public class ModelEvent {
 
-    private int image;
+    private String image;
     private String title;
 
-    public ModelEvent(int image, String title) {
+    public ModelEvent(String image, String title) {
         this.image = image;
         this.title = title;
     }
 
-    public int getImage() {
+    public ModelEvent() {
+    }
+
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
