@@ -2,19 +2,22 @@ package com.club.club;
 
 public class ModelClub {
 
-    private int image;
+    private String image;
     private String title;
 
-    public ModelClub(int image, String title) {
+    public ModelClub() {
+    }
+
+    public ModelClub(String image, String title) {
         this.image = image;
         this.title = title;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

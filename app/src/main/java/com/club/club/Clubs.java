@@ -7,10 +7,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,8 +28,10 @@ import androidx.recyclerview.widget.RecyclerView;
 public class Clubs extends Fragment {
 
     RecyclerView recyclerView;
-    ArrayList<ModelClub> mclublist;
 
+    DatabaseReference mRef;
+    FirebaseRecyclerOptions<ModelClub> options;
+    FirebaseRecyclerAdapter<ModelClub,ClubViewHolder> adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -30,14 +41,51 @@ public class Clubs extends Fragment {
 
         recyclerView = view.findViewById(R.id.rv_c);
 
+        mRef = FirebaseDatabase.getInstance().getReference().child("clubs");
+
+        options = new FirebaseRecyclerOptions.Builder<ModelClub>()
+                .setQuery(mRef,ModelClub.class).build();
+
+        adapter = new FirebaseRecyclerAdapter<ModelClub, ClubViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull ClubViewHolder holder, int position, @NonNull ModelClub model) {
+
+                Picasso.get().load(model.getImage()).into(holder.i1, new Callback() {
+                    @Override
+                    public void onSuccess() {
+
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+                holder.t1.setText(model.getTitle());
+
+            }
+
+            @NonNull
+            @Override
+            public ClubViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_clubs,parent,false);
+                return new ClubViewHolder(view);
+            }
+        };
+
         recyclerView.addOnItemTouchListener(new RvItemClickListener(getContext(), recyclerView, new RvItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 Toast.makeText(getContext(), "Clicked " +position, Toast.LENGTH_SHORT).show();
-                if(position==2) {
-                    Intent intent = new Intent(getContext(), Club_Details.class);
-                    startActivity(intent);
-                }
+                View view2 = recyclerView.getLayoutManager().findViewByPosition(position);
+                TextView tv = (TextView)view2.findViewById(R.id.rv_club_title);
+                Intent intent = new Intent(getContext(), Club_Details.class);
+                intent.putExtra("name",tv.getText().toString());
+                startActivity(intent);
+
             }
 
             @Override
@@ -47,11 +95,6 @@ public class Clubs extends Fragment {
         }));
 
 
-        mclublist = new ArrayList<>();
-
-        mclublist.add(new ModelClub(R.drawable.sit,"Siddaganga Institute of Technology"));
-        mclublist.add(new ModelClub(R.drawable.dmc16,"Destiny Music Clique"));
-        mclublist.add(new ModelClub(R.drawable.quiz_logo,"Quizzing Inc."));
 
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
@@ -59,11 +102,32 @@ public class Clubs extends Fragment {
 
         recyclerView.setLayoutManager(rvlayoutmanager);
 
-        Clubs_Adapter cadapter = new Clubs_Adapter(getContext(),mclublist);
+        adapter.startListening();
 
-        recyclerView.setAdapter(cadapter);
+        recyclerView.setAdapter(adapter);
 
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if(adapter!=null)
+            adapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if(adapter!=null)
+            adapter.stopListening();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(adapter!=null)
+            adapter.startListening();
     }
 
 }

@@ -50,7 +50,8 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/club_logo"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"/>
+            android:layout_marginBottom="5dp"
+            android:id="@+id/club_name"/>
     </RelativeLayout>
 
     <androidx.cardview.widget.CardView
@@ -85,6 +86,7 @@
                     android:textSize="30sp"
                     android:textStyle="normal"
                     android:layout_gravity="center"
+                    android:id="@+id/club_estd"
                     />
 
                 <TextView
@@ -110,7 +112,8 @@
                 android:text="27"
                 android:textSize="30dp"
                 android:textStyle="normal"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:id="@+id/club_mem"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -156,7 +159,7 @@
                 android:lineSpacingExtra="2dp"
                 android:layout_margin="8dp"
                 android:text="aksdkajsdh  aiuuai eiufheufh iefuheiufheiufiufeejfiuehfueh iuefhiuefh eifheiufjkcjnsnv uieufeiojsoi eufieuijsksdjfheu iuefheiufhsjfsdkbjveuhe eufeijsjdvdsjfhuehfie efueriuehfeskcd eifueiufheiu uefheifuhiufsdjfh ieufiefuhsjddsjkvei eiuhfeidjskjksdjfskf eiuyeifieufsjhf eiuriueriu eufheiuier hfdhj fdyhg  htffghg hgdghuh jgfvbjgfghh hutfcgji htdchjhgdd uurdcccuyrd iitffchjuddc jjtdcvkutd jjgdcvbkyrdcvb kufdcchjtdd kjjuifkdif"
-                />
+                android:id="@+id/club_desc"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -280,13 +283,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:text="+91878979066" />
+                android:text="+91878979066"
+                android:id="@+id/club_contact1"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
-                android:text="Sumit Kumar" />
+                android:text="Sumit Kumar"
+                android:id="@+id/club_contact_name1"/>
 
 
 
@@ -339,13 +344,15 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="20sp"
-                            android:text="+919431268172" />
+                            android:text="+919431268172"
+                            android:id="@+id/club_contact2"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="15sp"
-                            android:text="Sumit Suman" />
+                            android:text="Sumit Suman"
+                            android:id="@+id/club_contact_name2"/>
 
 
 
