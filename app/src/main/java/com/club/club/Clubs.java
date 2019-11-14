@@ -12,8 +12,10 @@ import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.rey.material.widget.ProgressView;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -33,6 +35,8 @@ public class Clubs extends Fragment {
     FirebaseRecyclerOptions<ModelClub> options;
     FirebaseRecyclerAdapter<ModelClub,ClubViewHolder> adapter;
 
+    private ProgressView pv_circular;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -40,6 +44,7 @@ public class Clubs extends Fragment {
         View view = inflater.inflate(R.layout.fragment_clubs, container, false);
 
         recyclerView = view.findViewById(R.id.rv_c);
+        pv_circular=(ProgressView)view.findViewById(R.id.club_progress);
 
         mRef = FirebaseDatabase.getInstance().getReference().child("clubs");
 
@@ -65,6 +70,18 @@ public class Clubs extends Fragment {
 
                 holder.t1.setText(model.getTitle());
 
+            }
+
+            @Override
+            public void onDataChanged() {
+                super.onDataChanged();
+                pv_circular.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onError(@NonNull DatabaseError error) {
+                super.onError(error);
+                Toast.makeText(getContext(),error.getMessage(),Toast.LENGTH_SHORT).show();
             }
 
             @NonNull

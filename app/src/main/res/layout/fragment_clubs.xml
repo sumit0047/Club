@@ -43,12 +43,30 @@
         android:clipToPadding="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.rey.material.widget.ProgressView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                app:pv_autostart="true"
+                app:pv_circular="true"
+                app:pv_progressStyle="@style/Material.Widget.ProgressView.Circular"
+                app:pv_progressMode="indeterminate"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:id="@+id/club_progress"
+                android:layout_marginTop="70dp"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/rv_c">
 
         </androidx.recyclerview.widget.RecyclerView>
+
+        </RelativeLayout>
 
 
     </androidx.core.widget.NestedScrollView>
