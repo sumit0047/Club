@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
@@ -25,7 +26,8 @@ import com.synnapps.carouselview.ImageListener;
 public class Club_Details extends AppCompatActivity {
 
     private TextView clubname,clubmem,clubestd,clubdesc,cont1,cont2,contn1,contn2;
-    private ImageView clublogo;
+    private ImageView clublogo,fb,insta,mail,call1,call2,msg1,msg2;
+    String fblink,instalink,maillink,contact1,contact2;
 
 
     CarouselView carouselView;
@@ -50,6 +52,13 @@ public class Club_Details extends AppCompatActivity {
         contn1 = (TextView)findViewById(R.id.club_contact_name1);
         contn2 = (TextView)findViewById(R.id.club_contact_name2);
         clublogo = (ImageView)findViewById(R.id.club_logo);
+        fb = findViewById(R.id.fb);
+        insta = findViewById(R.id.insta);
+        mail = findViewById(R.id.mail);
+        msg1 = findViewById(R.id.messageid1);
+        msg2 = findViewById(R.id.messageid2);
+        call1 = findViewById(R.id.callid1);
+        call2 = findViewById(R.id.callid2);
 
         Intent intent = getIntent();
         String id = intent.getStringExtra("name");
@@ -69,6 +78,12 @@ public class Club_Details extends AppCompatActivity {
                     contn1.setText(model.getContact1n());
                     cont2.setText(model.getContact2());
                     contn2.setText(model.getContact2n());
+                    fblink = model.getFb();
+                    instalink = model.getInsta();
+                    maillink = model.getMail();
+                    contact1 = model.getContact1();
+                    contact2 = model.getContact2();
+
                     Picasso.get().load(model.getImage()).into(clublogo, new Callback() {
                         @Override
                         public void onSuccess() {
@@ -85,6 +100,62 @@ public class Club_Details extends AppCompatActivity {
                     img[2]=model.getPic3();
                     img[3]=model.getPic4();
                     img[4]=model.getPic5();
+
+                    fb.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(fblink));
+                            startActivity(browserIntent);
+                        }
+                    });
+                    insta.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(instalink));
+                            startActivity(browserIntent);
+                        }
+                    });
+                    mail.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("mailto:"+maillink));
+                            startActivity(browserIntent);
+                        }
+                    });
+
+                    call1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                            callIntent.setData(Uri.parse("tel:"+contact1));
+                            startActivity(callIntent);
+                        }
+                    });
+
+                    call2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                            callIntent.setData(Uri.parse("tel:"+contact2));
+                            startActivity(callIntent);
+                        }
+                    });
+                    msg1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("sms:"
+                                    + contact1)));
+                        }
+                    });
+
+                    msg2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("sms:"
+                                    + contact2)));
+                        }
+                    });
+
                 }
             }
 
@@ -112,8 +183,17 @@ public class Club_Details extends AppCompatActivity {
 
     @Override
     protected void onStop() {
-        super.onStop();
         for(int i=0;i<5;i++)
             Picasso.get().invalidate(img[i]);
+        super.onStop();
+
+    }
+
+    @Override
+    protected void onPause() {
+        for(int i=0;i<5;i++)
+            Picasso.get().invalidate(img[i]);
+        super.onPause();
+
     }
 }

@@ -158,7 +158,7 @@
                 android:textSize="15sp"
                 android:lineSpacingExtra="2dp"
                 android:layout_margin="8dp"
-                android:text="aksdkajsdh  aiuuai eiufheufh iefuheiufheiufiufeejfiuehfueh iuefhiuefh eifheiufjkcjnsnv uieufeiojsoi eufieuijsksdjfheu iuefheiufhsjfsdkbjveuhe eufeijsjdvdsjfhuehfie efueriuehfeskcd eifueiufheiu uefheifuhiufsdjfh ieufiefuhsjddsjkvei eiuhfeidjskjksdjfskf eiuyeifieufsjhf eiuriueriu eufheiuier hfdhj fdyhg  htffghg hgdghuh jgfvbjgfghh hutfcgji htdchjhgdd uurdcccuyrd iitffchjuddc jjtdcvkutd jjgdcvbkyrdcvb kufdcchjtdd kjjuifkdif"
+                android:text="eiufjkcjnrd iitfjjuifkdif"
                 android:id="@+id/club_desc"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -222,6 +222,7 @@
                 android:layout_height="50dp"
                 android:src="@drawable/fb"
                 android:layout_weight="3"
+                android:id="@+id/fb"
                 android:layout_gravity="center"/>
 
                 <ImageView
@@ -229,12 +230,14 @@
                     android:layout_height="50dp"
                     android:src="@drawable/insta"
                     android:layout_weight="3"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:id="@+id/insta"/>
 
                 <ImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:src="@drawable/mail"
+                    android:id="@+id/mail"
                     android:layout_weight="3"
                     android:layout_gravity="center"/>
 
@@ -271,6 +274,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/baseline_phone_in_talk_24"
             android:layout_weight="2"
+            android:id="@+id/callid1"
             android:layout_gravity="center"/>
 
         <LinearLayout
@@ -301,6 +305,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/baseline_chat_24"
+            android:id="@+id/messageid1"
             android:layout_weight="2"
             android:layout_gravity="center"/>
 
@@ -331,6 +336,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/baseline_phone_in_talk_24"
+                        android:id="@+id/callid2"
                         android:layout_weight="2"
                         android:layout_gravity="center"/>
 
@@ -362,6 +368,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/baseline_chat_24"
+                        android:id="@+id/messageid2"
                         android:layout_weight="2"
                         android:layout_gravity="center"/>
 
