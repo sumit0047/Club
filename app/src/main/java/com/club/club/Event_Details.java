@@ -126,10 +126,6 @@ public class Event_Details extends AppCompatActivity {
 
             }
         });
-
-
-
-
     }
 
 }

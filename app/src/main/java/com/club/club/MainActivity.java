@@ -3,13 +3,21 @@ package com.club.club;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -25,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements DuoMenuView.OnMen
     boolean doubleBackToExitPressedOnce = false;
 
     private ArrayList<String> mTitles = new ArrayList<>();
+    private TextView profilename;
+    private TextView profileusn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +42,28 @@ public class MainActivity extends AppCompatActivity implements DuoMenuView.OnMen
         setContentView(R.layout.activity_main);
 
         mTitles = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.menuOptions)));
+
+        profileusn = findViewById(R.id.duo_view_header_text_sub_title);
+        profilename= findViewById(R.id.duo_view_header_text_title);
+
+  //     profilename.setVisibility(View.GONE);
+  //     profileusn.setVisibility(View.GONE);
+
+        FirebaseDatabase.getInstance().getReference("users").orderByChild("email").equalTo(FirebaseAuth.getInstance().getCurrentUser().getEmail()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    User_profile userp = postSnapshot.getValue(User_profile.class);
+                    profilename.setText(userp.getName());
+                    profileusn.setText(userp.getUsn());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
         mViewHolder = new ViewHolder();
@@ -158,4 +190,5 @@ public class MainActivity extends AppCompatActivity implements DuoMenuView.OnMen
             mToolbar = (Toolbar) findViewById(R.id.toolbar);
         }
     }
+
 }
