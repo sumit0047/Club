@@ -15,8 +15,8 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        sleep(1000);
-        Intent intent = new Intent(SplashScreen.this,MainActivity.class);
+      //  sleep(1000);
+        Intent intent = new Intent(SplashScreen.this,Login.class);
         startActivity(intent);
         finish();
 

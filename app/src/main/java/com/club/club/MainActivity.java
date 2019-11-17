@@ -2,7 +2,10 @@ package com.club.club;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements DuoMenuView.OnMen
 
     private com.club.club.MenuAdapter mMenuAdapter;
     private ViewHolder mViewHolder;
+    boolean doubleBackToExitPressedOnce = false;
 
     private ArrayList<String> mTitles = new ArrayList<>();
 
@@ -72,7 +76,31 @@ public class MainActivity extends AppCompatActivity implements DuoMenuView.OnMen
 
     @Override
     public void onFooterClicked() {
-        Toast.makeText(this, "onFooterClicked", Toast.LENGTH_SHORT).show();
+
+        FirebaseAuth.getInstance().signOut();
+        Toast.makeText(this, "Successfully Logged out", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(MainActivity.this,Login.class));
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            this.finishAffinity();
+            System.exit(0);
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
     }
 
     @Override

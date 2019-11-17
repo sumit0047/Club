@@ -2,6 +2,7 @@ package com.club.club;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -29,10 +30,14 @@ public class MainFragment extends Fragment {
             R.drawable.bp
     };
 
+    private TextView login;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         ViewPager pager = (ViewPager) view.findViewById(R.id.pager);
+        login=(TextView)container.findViewById(R.id.login);
+
         pager.setAdapter(new PagerAdapter());
         return view;
     }

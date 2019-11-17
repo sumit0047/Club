@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,6 +55,8 @@ public class Clubs extends Fragment {
         adapter = new FirebaseRecyclerAdapter<ModelClub, ClubViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull ClubViewHolder holder, int position, @NonNull ModelClub model) {
+
+                holder.club_container.setAnimation(AnimationUtils.loadAnimation(getContext(),R.anim.fade_transition_animation));
 
                 Picasso.get().load(model.getImage()).into(holder.i1, new Callback() {
                     @Override

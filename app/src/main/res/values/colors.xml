@@ -11,4 +11,6 @@
     <color name="medium_sea_green">#3CB371</color>
     <color name="kind_red">#dd3e3e</color>
     <color name="darkblack">#323643</color>
+    <color name="blue_normal">#2196F3</color>
+    <color name="blue_grad">#3B3E52</color>
 </resources>

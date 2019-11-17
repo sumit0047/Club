@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/Snackbar"
+    android:background="@color/darkblack"
+    tools:context=".SignUp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/editText_Name"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:hint="Name"
+            app:met_baseColor="#ffffff"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelText="Name"
+            app:met_floatingLabelTextColor="@color/white"
+            />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/editText_email"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            app:met_baseColor="#ffffff"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelText="Email"
+            app:met_floatingLabelTextColor="@color/white"
+            />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/editText_PhoneNumber"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:hint="Phone Number"
+            android:inputType="phone"
+            app:met_baseColor="#ffffff"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelText="Phone Number"
+            app:met_floatingLabelTextColor="@color/white"
+            />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/editText_USN"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:hint="USN/REG_no."
+            android:inputType="textShortMessage"
+            app:met_baseColor="#ffffff"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelText="USN/REG_no."
+            app:met_floatingLabelTextColor="@color/white"
+            />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/editText_Password"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            app:met_baseColor="#ffffff"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelText="Password"
+            app:met_floatingLabelTextColor="@color/white"
+            />
+
+
+        <com.dd.processbutton.iml.ActionProcessButton
+            android:id="@+id/btnSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Sign_up"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            custom:pb_colorComplete="@color/green_complete"
+            custom:pb_colorNormal="@color/blue_normal"
+            custom:pb_colorPressed="@color/blue_pressed"
+            custom:pb_colorProgress="@color/purple_progress"
+            custom:pb_textComplete="Signed Up Success"
+            custom:pb_textProgress="Signing up..."
+            custom:pb_textError="Error"
+            custom:pb_colorError="@color/red_error" />
+
+        <TextView
+            android:id="@+id/AlreadyAccountText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Already a member? Login Here"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+    </LinearLayout>
+</LinearLayout>
